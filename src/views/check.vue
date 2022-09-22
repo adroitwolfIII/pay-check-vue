@@ -73,8 +73,14 @@ export default {
             // start_date = getDateString(start_date)
             // end_date = getDateString(end_date)
             payApi.search(query.name, start_date,end_date).then(res => {
-                this.tableData = res.data;
-
+                this.tableData = [];
+                
+                // 修改数组
+                let element = res.data
+                for(var i = 0; i < element.length; i++) {
+                    element[i].dateTime =getDateString(element[i].dateTime)
+                    this.tableData.push(element[i])
+                }
                 Message.success("查询成功")
             })
         }
