@@ -29,15 +29,45 @@
           <el-date-picker v-model="insert.date" type="month">
           </el-date-picker>
         </el-form-item>
-        <el-form-item label="薪资标题">
-          <el-input v-model="insert.title"></el-input>
+        <el-form-item label="基础工资">
+          <el-input v-model="insert.jcgz"></el-input>
         </el-form-item>
-        <el-form-item label="薪资">
-          <el-input v-model="insert.value"></el-input>
+        <el-form-item label="课时费">
+          <el-input v-model="insert.ksf"></el-input>
+        </el-form-item>
+        <el-form-item label="基础绩效">
+          <el-input v-model="insert.jcjx"></el-input>
+        </el-form-item>
+        <el-form-item label="工资工龄">
+          <el-input v-model="insert.glgz"></el-input>
+        </el-form-item>
+        <el-form-item label="电话补助">
+          <el-input v-model="insert.dhbz"></el-input>
+        </el-form-item>
+        <el-form-item label="交通补助">
+          <el-input v-model="insert.jtbz"></el-input>
+        </el-form-item>
+        <el-form-item label="加班补助">
+          <el-input v-model="insert.jbbz"></el-input>
+        </el-form-item>
+        <el-form-item label="劳动保险">
+          <el-input v-model="insert.ldbx"></el-input>
+        </el-form-item>
+        <el-form-item label="失业保险">
+          <el-input v-model="insert.sybx"></el-input>
+        </el-form-item>
+        <el-form-item label="医疗保险">
+          <el-input v-model="insert.ylbx"></el-input>
+        </el-form-item>
+        <el-form-item label="个人所得税">
+          <el-input v-model="insert.grsds"></el-input>
+        </el-form-item>
+        <el-form-item label="公积金">
+          <el-input v-model="insert.gjj"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">更新</el-button>
-        </el-form-item>
+        </el-form-item> 
       </el-form>
     </el-drawer>
   </div>
@@ -68,8 +98,18 @@ export default {
         this.drawer = false;
       })
       this.insert.name = ''
-      this.insert.title = ''
-      this.insert.value = ''
+      this.insert.jcgz = ''
+      this.insert.ksf = ''
+      this.insert.jcjx = ''
+      this.insert.glgz = ''
+      this.insert.dhbz = ''
+      this.insert.jtbz = ''
+      this.insert.jbbz = ''
+      this.insert.ldbx = ''
+      this.insert.sybx = ''
+      this.insert.ylbx = ''
+      this.insert.grsds = ''
+      this.insert.gjj = ''
       this.insert.date = ''
     }
   },

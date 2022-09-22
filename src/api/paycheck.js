@@ -10,8 +10,18 @@ payApi.insertItem = (form)=>{
         data: {
             name:form.name,
             date:form.date,
-            title:form.title,
-            value:form.value
+            jcgz:form.jcgz,
+            ksf:form.ksf,
+            jcjx:form.jcjx,
+            glgz:form.glgz,
+            dhbz:form.dhbz,
+            jtbz:form.jtbz,
+            jbbz:form.jbbz,
+            ldbx:form.ldbx,
+            sybx:form.sybx,
+            ylbx:form.ylbx,
+            grsds:form.grsds,
+            gjj:form.gjj,
         },
         method: 'post'
     })
