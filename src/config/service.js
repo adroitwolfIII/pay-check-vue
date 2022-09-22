@@ -14,9 +14,8 @@ const service = axios.create({
 
 function setTokenToHeader(config) {
     // set token
-    // const token = store.getters.token ? store.getters.token : getToken();
+    const token = store.getters.token ? store.getters.token : getToken();
 
-    const token = store.getters.token;
     if (token) {
         config.headers['Authentication'] = token;
     }

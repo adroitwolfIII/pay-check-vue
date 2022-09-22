@@ -20,5 +20,19 @@ userApi.login = (username, password) => {
     
 }
 
+userApi.info = () =>{
+    return service({
+        url: `${baseUrl}/info`,
+        method: 'get'
+    })
+}
+
+
+userApi.info = () =>{
+    return service({
+        url: `${baseUrl}/info`,
+        method: 'get'
+    })
+}
 
 export default userApi

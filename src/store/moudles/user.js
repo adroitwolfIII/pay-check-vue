@@ -20,18 +20,13 @@ const mutations = {
 };
 
 
-
 const actions = {
     login({ commit }, { username, password }) {
         return new Promise((resolve, reject) => {
             userApi.login(username, password)
                 .then(response => {
                     const token = response.data;
-                    // const token = data.token;
-                    // const roles = data.user.roles;
-                    // console.log(roles);
-
-
+                   
                     commit('SET_TOKEN', token);
                     resolve(response);
                 })

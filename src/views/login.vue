@@ -61,7 +61,7 @@ export default {
           this.login({ username: this.loginForm.username, password: this.loginForm.password }).then(
             response => {
               Message.info("登陆成功");
-              router.push({ name: "员工薪资管理" });
+              router.push({ name: "后台主页" });
             }
           ).catch(() => {
             this.loading = false;
