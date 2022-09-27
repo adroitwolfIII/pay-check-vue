@@ -3,9 +3,6 @@
         <el-card>
             <el-form @submit.native.prevent label-postion="left" :inline="true" :label-width="100"
                 class="demo-form-inline">
-                <el-form-item label="员工名称">
-                    <el-input type="text" v-model="queryParams.name"></el-input>
-                </el-form-item>
                 <el-form-item label="薪资日期">
                     <el-date-picker v-model="queryParams.date" type="monthrange" range-separator="至"
                         start-placeholder="开始月份" end-placeholder="结束月份">
@@ -72,7 +69,7 @@ export default {
             let end_date = query.date[1]
             // start_date = getDateString(start_date)
             // end_date = getDateString(end_date)
-            payApi.search(query.name, start_date,end_date).then(res => {
+            payApi.search(start_date,end_date).then(res => {
                 this.tableData = [];
                 
                 // 修改数组

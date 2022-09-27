@@ -28,11 +28,10 @@ payApi.insertItem = (form)=>{
 }
 
 
-payApi.search = (name,start_date,end_date)=>{
+payApi.search = (start_date,end_date)=>{
     return service({
         url: `${baseUrl}/search`,
         params:{
-            name:name,
             startDate:start_date,
             endDate:end_date
         },

@@ -1,6 +1,7 @@
 const getters = {
     token: state => state.user.token,
-    addRouters: state => state.permission.addRouters
+    addRouters: state => state.permission.addRouters,
+    menus: state => state.permission.menu
 }
 
 

@@ -1,16 +1,11 @@
 <template>
   <div>
-    <el-menu mode="horizontal" class="header">
+    <el-menu mode="horizontal" :default-active="$router.path" :router="true" class="el-menu-demo" background-color="#545c64" text-color="#fff"
+      active-text-color="#ffd04b">
       <!-- 用户操作的菜单模块 -->
-      <div class="menu">
-        <template v-for="(menu,index) in menus" >
-          <el-menu-item  v-if="!menu.children" :key="index" :name="index" :to="menu.path">
-            {{menu.name}}
-          </el-menu-item>
-        </template>
-      </div>
-      <div>
-      </div>
+      <el-menu-item v-for="(menu,index) in menus" :name="index" :to="menu.path">
+        {{menu.name}}
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -26,12 +21,12 @@ export default {
     };
   },
   components: {
-    
+
   },
   methods: {
-    
+
   },
-  mounted(){
+  mounted() {
     console.log(this.menus);
   },
   computed: {
@@ -49,12 +44,10 @@ export default {
 .menu {
   padding: 0 60px;
 }
+
 .profile {
   padding: 0 60px;
   line-height: 60px;
-}
-.ivu-dropdown-item {
-  font-size: 16px !important;
 }
 
 .accessory {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-      <div style="margin: 10px 0;">
+      <div style="margin-bottom: 20px;">
         <el-button type="primary" @click="drawer = true">新增工资</el-button>
       </div>
       <el-form @submit.native.prevent label-postion="left" :inline="true" :label-width="100" class="demo-form-inline">
