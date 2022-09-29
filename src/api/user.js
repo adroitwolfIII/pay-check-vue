@@ -1,4 +1,5 @@
 import service from '@/config/service'
+import user from '@/store/moudles/user'
 
 
 import md5 from 'js-md5'
@@ -27,12 +28,18 @@ userApi.info = () =>{
     })
 }
 
-
-userApi.info = () =>{
+userApi.register = (data)=>{
     return service({
-        url: `${baseUrl}/info`,
-        method: 'get'
+        url:`${baseUrl}/register`,
+        method:'post',
+        data:{
+            username:data.username,
+            password:md5(data.password)
+        }
     })
 }
+
+
+
 
 export default userApi

@@ -112,7 +112,7 @@ export default {
         // 查看用户详细工资
         review(row) {
             this.rowDetail = row;
-            
+
             this.dialogFlag = true
         }
     }
