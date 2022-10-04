@@ -7,6 +7,18 @@
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
+      <el-form-item prop="id_card">
+        <el-input v-model="registerForm.id_card" type="text" auto-complete="off" placeholder="身份证号"
+          @keyup.enter.native="handleRegister">
+          <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="credit_card">
+        <el-input v-model="registerForm.credit_card" type="text" auto-complete="off" placeholder="工资卡号"
+          @keyup.enter.native="handleRegister">
+          <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
+        </el-input>
+      </el-form-item>
       <el-form-item prop="password">
         <el-input v-model="registerForm.password" type="password" auto-complete="off" placeholder="密码"
           @keyup.enter.native="handleRegister">
@@ -59,7 +71,15 @@ export default {
         ],
         password: [
           { required: true, trigger: "blur", message: "请输入您的密码" },
-          { min: 5, max: 20, message: '用户密码长度必须介于 5 和 20 之间', trigger: 'blur' }
+          { min: 3, max: 20, message: '用户密码长度必须介于 3 和 20 之间', trigger: 'blur' }
+        ],
+        id_card: [
+          { required: true, trigger: "blur", message: "请输入您的身份证号" },
+          { min: 3, max: 20, message: '身份证号长度必须介于 3 和 20 之间', trigger: 'blur' }
+        ],
+        credit_card: [
+          { required: true, trigger: "blur", message: "请输入您的工资卡号" },
+          { min: 3, max: 20, message: '工资卡号长度必须介于 3 和 20 之间', trigger: 'blur' }
         ],
         confirmPassword: [
           { required: true, trigger: "blur", message: "请再次输入您的密码" },
@@ -84,7 +104,7 @@ export default {
               dangerouslyUseHTMLString: true,
               type: 'success'
             }).then(() => {
-              this.$router.push("/login");
+              this.$router.push("/");
             }).catch(() => { Message.error("注册失败") });
           }).catch(() => {
             this.loading = false;

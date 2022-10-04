@@ -33,8 +33,10 @@ userApi.register = (data)=>{
         url:`${baseUrl}/register`,
         method:'post',
         data:{
-            username:data.username,
-            password:md5(data.password)
+            name:data.username,
+            password:md5(data.password),
+            idCard:data.id_card,
+            creditCard:data.credit_card
         }
     })
 }
