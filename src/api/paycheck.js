@@ -38,4 +38,17 @@ payApi.search = (start_date,end_date)=>{
         method: 'get'
     }) 
 }
+
+payApi.search4admin = (data) =>{
+    return service({
+        url: `${baseUrl}/search4admin`,
+        params:{
+            name:data.name,
+            startDate:data.start_date,
+            endDate:data.end_date
+        },
+        method: 'get'
+    }) 
+}
+
 export default payApi
