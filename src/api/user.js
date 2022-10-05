@@ -21,6 +21,7 @@ userApi.login = (username, password) => {
     
 }
 
+// 查询用户信息
 userApi.info = () =>{
     return service({
         url: `${baseUrl}/info`,

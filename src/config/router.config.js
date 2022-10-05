@@ -20,6 +20,11 @@ export const constantRouterMap = [{
   meta: { title: '注册', requiresAuth: false },
   name: 'Register',
   component: ()=> import('@/views/register')
+}, {
+  path: '/forget',
+  meta: { title: '忘记密码', requiresAuth: false },
+  name: 'Forget',
+  component: ()=> import('@/views/forget')
 }
 ]
 
