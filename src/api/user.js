@@ -43,6 +43,21 @@ userApi.register = (data)=>{
 }
 
 
+// 密码找回
+
+userApi.forget = (data)=>{
+    return service({
+        url:`${baseUrl}/forget`,
+        method:'post',
+        data:{
+            name:data.username,
+            password:md5(data.password),
+            idCard:data.id_card,
+            creditCard:data.credit_card
+        }
+    })
+}
+
 
 
 export default userApi

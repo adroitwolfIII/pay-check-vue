@@ -1,30 +1,44 @@
 <template>
     <div class="register">
-      <el-form ref="registerForm" :model="registerForm" :rules="registerRules" class="register-form">
+      <el-form ref="forgetForm" :model="forgetForm" :rules="registerRules" class="register-form">
         <h3 class="title">密码找回</h3>
+        
         <el-form-item prop="username">
-          <el-input v-model="registerForm.username" type="text" auto-complete="off" placeholder="账号">
+        <el-input v-model="forgetForm.username" type="text" auto-complete="off" placeholder="账号">
+          <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
+        </el-input>
+      </el-form-item>
+        
+        <el-form-item prop="id_card">
+          <el-input v-model="forgetForm.id_card" type="text" auto-complete="off" placeholder="身份证">
             <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
           </el-input>
         </el-form-item>
+
+        <el-form-item prop="credit_card">
+          <el-input v-model="forgetForm.credit_card" type="text" auto-complete="off" placeholder="工资卡号">
+            <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
+          </el-input>
+        </el-form-item>
+
         <el-form-item prop="password">
-          <el-input v-model="registerForm.password" type="password" auto-complete="off" placeholder="密码"
-            @keyup.enter.native="handleRegister">
+          <el-input v-model="forgetForm.password" type="password" auto-complete="off" placeholder="密码"
+            @keyup.enter.native="handleForget">
             <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
           </el-input>
         </el-form-item>
         <el-form-item prop="confirmPassword">
-          <el-input v-model="registerForm.confirmPassword" type="password" auto-complete="off" placeholder="确认密码"
-            @keyup.enter.native="handleRegister">
+          <el-input v-model="forgetForm.confirmPassword" type="password" auto-complete="off" placeholder="确认密码"
+            @keyup.enter.native="handleForget">
             <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
           </el-input>
         </el-form-item>
   
         <el-form-item style="width:100%;">
           <el-button :loading="loading" size="medium" type="primary" style="width:100%;"
-            @click.native.prevent="handleRegister">
-            <span v-if="!loading">注 册</span>
-            <span v-else>注 册 中...</span>
+            @click.native.prevent="handleForget">
+            <span v-if="!loading">找回</span>
+            <span v-else>找 回 中...</span>
           </el-button>
   
         </el-form-item>
@@ -32,72 +46,77 @@
     </div>
   </template>
   
-  <script>
-  import userApi from "@/api/user";
-  import { Message } from "element-ui"
-  export default {
-    name: "Forget",
-    data() {
-      const equalToPassword = (rule, value, callback) => {
-        if (this.registerForm.password !== value) {
-          callback(new Error("两次输入的密码不一致"));
-        } else {
-          callback();
-        }
-      };
-      return {
-        registerForm: {
-          username: "",
-          password: "",
-          confirmPassword: "",
-          uuid: ""
-        },
-        registerRules: {
-          username: [
-            { required: true, trigger: "blur", message: "请输入您的账号" },
-            { min: 2, max: 20, message: '用户账号长度必须介于 2 和 20 之间', trigger: 'blur' }
-          ],
-          password: [
-            { required: true, trigger: "blur", message: "请输入您的密码" },
-            { min: 5, max: 20, message: '用户密码长度必须介于 5 和 20 之间', trigger: 'blur' }
-          ],
-          confirmPassword: [
-            { required: true, trigger: "blur", message: "请再次输入您的密码" },
-            { required: true, validator: equalToPassword, trigger: "blur" }
-          ]
-        },
-        loading: false,
-        captchaEnabled: true
-      };
-    },
-    created() {
-  
-    },
-    methods: {
-      handleRegister() {
-        this.$refs.registerForm.validate(valid => {
-          if (valid) {
-            this.loading = true;
-            userApi.register(this.registerForm).then(res => {
-              const username = this.registerForm.username;
-              this.$alert("<font color='red'>恭喜你，您的账号 " + username + " 注册成功！</font>", '系统提示', {
-                dangerouslyUseHTMLString: true,
-                type: 'success'
-              }).then(() => {
-                this.$router.push("/login");
-              }).catch(() => { Message.error("注册失败") });
-            }).catch(() => {
-              this.loading = false;
-  
-            })
-          }
-        });
+<script>
+import userApi from "@/api/user";
+import { Message } from "element-ui"
+export default {
+  name: "Forget",
+  data() {
+    const equalToPassword = (rule, value, callback) => {
+      if (this.forgetForm.password !== value) {
+        callback(new Error("两次输入的密码不一致"));
+      } else {
+        callback();
       }
+    };
+    return {
+      forgetForm: {
+        id_card: "",
+        password: "",
+        confirmPassword: "",
+        credit_card: "",
+        username:""
+      },
+      registerRules: {
+        username: [
+        { required: true, trigger: "blur", message: "请输入您的账号" },
+        { min: 2, max: 20, message: '用户账号长度必须介于 2 和 20 之间', trigger: 'blur' }
+        ],
+        id_card: [
+          { required: true, trigger: "blur", message: "请输入您的身份证" },
+          { min: 2, max: 20, message: '身份证长度必须介于 2 和 20 之间', trigger: 'blur' }
+        ],
+        credit_card: [
+          { required: true, trigger: "blur", message: "请输入您的工资卡号" },
+          { min: 2, max: 20, message: '工资卡号必须介于 2 和 20 之间', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, trigger: "blur", message: "请输入您的密码" },
+          { min: 3, max: 20, message: '用户密码长度必须介于 5 和 20 之间', trigger: 'blur' }
+        ],
+        confirmPassword: [
+          { required: true, trigger: "blur", message: "请再次输入您的密码" },
+          { required: true, validator: equalToPassword, trigger: "blur" }
+        ]
+      },
+      loading: false,
+      captchaEnabled: true
+    };
+  },
+  created() {
+
+  },
+  methods: {
+    handleForget() {
+      this.$refs.forgetForm.validate(valid => {
+        if (valid) {
+          this.loading = true;
+          userApi.forget(this.forgetForm).then(res => {
+            Message.success("密码找回成功，请登录");
+
+            this.$router.push("/");
+          }).catch(() => {
+            this.loading = false;
+
+          })
+        }
+      });
     }
-  };
-  </script>
+  }
+};
+</script>
   
-  <style rel="stylesheet/scss" lang="scss">
+<style rel="stylesheet/scss" lang="scss">
   .register {
     display: flex;
     justify-content: center;
