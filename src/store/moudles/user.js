@@ -35,6 +35,23 @@ const actions = {
                 })
         })
     },
+    logout({ commit }) {
+        //     return new Promise((resolve, reject) => {
+        //         let autoToken = {};
+        //         autoToken.accessToken = state.accessToken;
+        //         autoToken.refreshToken = state.refreshToken;
+        //         adminApi.logout(autoToken).then(response => {
+        //             this.clear_Info();
+        //         }).catch(error => {
+        //             reject(error);
+        //         })
+        //     })
+        // },
+        // clear_Info({ commit }) {
+        removeToken(); //删除cookie
+        //清除用户信息
+        commit("SET_TOKEN", '');
+    },
 };
 
 
