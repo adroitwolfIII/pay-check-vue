@@ -51,4 +51,11 @@ payApi.search4admin = (data) =>{
     }) 
 }
 
+payApi.delItem = (id) =>{
+    return service({
+        url:`${baseUrl}/delItem/${id}`,
+        method:'post',
+    })
+}
+
 export default payApi
