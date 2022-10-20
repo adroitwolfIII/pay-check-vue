@@ -53,14 +53,14 @@
       </el-descriptions>
 
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button @click="dialogFlag = false">取 消</el-button>
+        <el-button type="primary" @click="dialogFlag = false">确 定</el-button>
       </span>
     </el-dialog>
 
 
-    <el-drawer title="新增工资" :visible.sync="drawer" direction="rtl" :before-close="handleClose">
-      <el-form ref="form" :model="insert" label-width="80px">
+    <el-drawer title="新增工资" :visible.sync="drawer" direction="rtl" >
+      <el-form ref="form" :model="insert" label-width="100px">
         <el-form-item label="员工名称">
           <el-input v-model="insert.name"></el-input>
         </el-form-item>
