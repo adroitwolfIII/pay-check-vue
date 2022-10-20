@@ -3,6 +3,7 @@
     <el-card>
       <div style="margin-bottom: 20px;">
         <el-button type="primary" @click="drawer = true">新增工资</el-button>
+        <el-button type="primary" @click="fileFlag = true">excel导入</el-button>
       </div>
       <el-form @submit.native.prevent label-postion="left" :inline="true" :label-width="100" class="demo-form-inline">
         <el-form-item label="员工名称:">
@@ -59,7 +60,7 @@
     </el-dialog>
 
 
-    <el-drawer title="新增工资" :visible.sync="drawer" direction="rtl" >
+    <el-drawer title="新增工资" :visible.sync="drawer" direction="rtl">
       <el-form ref="form" :model="insert" label-width="100px">
         <el-form-item label="员工名称">
           <el-input v-model="insert.name"></el-input>
@@ -109,6 +110,20 @@
         </el-form-item>
       </el-form>
     </el-drawer>
+
+    <el-dialog title="文件上传" :visible.sync="fileFlag" width="30%">
+      <!-- :on-exceed="handleExceed" :before-remove="beforeRemove"-->
+      <el-upload class="upload-demo" ref="upload" action="" accept=".xls,.xlsx" :limit='1' 
+        :file-list="fileList" :on-change="changeFile"  :auto-upload="false">
+        <el-button slot="trigger"  type="primary">选取文件</el-button>
+        <el-button class="sub-btn" type="primary" @click.native.prevent="submitFiles">提交</el-button>
+      </el-upload>
+      <!-- <span slot="footer" class="dialog-footer">
+        <el-button @click="fileFlag = false">取 消</el-button>
+        <el-button type="primary" @click="fileFlag = false">确 定</el-button>
+      </span> -->
+    </el-dialog>
+
   </div>
 </template>
   
@@ -120,6 +135,7 @@ export default {
   name: "manage",
   data() {
     return {
+      fileList: [],
       drawer: false,
       queryParams: {
         name: '',
@@ -127,8 +143,10 @@ export default {
       },
       tableData: [],
       rowDetail: {},
+      fileFlag:false,
       dialogFlag: false,
-      insert: {}
+      insert: {},
+      file: ''
     };
   },
   methods: {
@@ -156,6 +174,15 @@ export default {
       this.insert.gjj = ''
       this.insert.date = ''
     },
+    changeFile (file, fileList) {
+      console.log('change', file, file.raw)
+      this.file = file.raw
+    },
+    submitFiles () {
+      
+      //将需要提交的文件，和附带的数据，append FormData中 然后提交
+      
+      },
     // 查看用户详细工资
     review(row) {
       this.rowDetail = row;
@@ -164,7 +191,7 @@ export default {
     },
     // 查看用户详细工资
     del(row) {
-      payApi.delItem(row.id).then(res=>{
+      payApi.delItem(row.id).then(res => {
         Message.success("删除成功")
         // 重新请求
         this.search();
