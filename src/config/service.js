@@ -27,7 +27,7 @@ service.interceptors.request.use(config => {
         if (config.method === 'post' || config.method === 'put') {
             // config.data = qs.stringify({...config.data });
             if (config.headers['Content-Type'] === 'multipart/form-data') {
-
+                    
             } else {
                 config.headers['Content-Type'] = 'application/json; charset=utf-8';
                 config.data = JSON.stringify({ ...config.data })

@@ -143,7 +143,7 @@ export default {
       },
       tableData: [],
       rowDetail: {},
-      fileFlag:false,
+      fileFlag: false,
       dialogFlag: false,
       insert: {},
       file: ''
@@ -174,15 +174,26 @@ export default {
       this.insert.gjj = ''
       this.insert.date = ''
     },
-    changeFile (file, fileList) {
+    changeFile(file, fileList) {
       console.log('change', file, file.raw)
       this.file = file.raw
     },
-    submitFiles () {
-      
+    submitFiles() {
+
       //将需要提交的文件，和附带的数据，append FormData中 然后提交
-      
-      },
+      payApi.upload(this.file).then(response=>{
+        this.fileList = []
+        this.file = null
+        this.fileFlag = false
+        let error = response.data
+        if(error != null){
+            Message.info("某些员工未找到，已忽略")
+        } else{
+          
+          Message.success("EXCEL导入成功");
+        }
+      })
+    },
     // 查看用户详细工资
     review(row) {
       this.rowDetail = row;

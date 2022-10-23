@@ -58,4 +58,20 @@ payApi.delItem = (id) =>{
     })
 }
 
+
+payApi.upload = (file) =>{
+    const formData = new FormData();
+    formData.append("file", file);
+    console.log(formData.get("file"))
+    return service({
+        url: `${baseUrl}/readExcel`,
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        },
+        data: formData,
+        method: 'post'
+
+    })
+}
+
 export default payApi
